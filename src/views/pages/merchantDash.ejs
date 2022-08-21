@@ -1,0 +1,175 @@
+<%- include('../partials/metadata') %>
+
+    <header class="max-vw-100 fixed-top">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Peter Parks</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse align-items-right" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="merchantProfile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="postParking">Post Parking Spot</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <h1 class="display-3 text-center">Where Do You Want to Park?</h1>
+    <div class="container text-center h-100">
+
+        <div class="row aling-ites">
+            <!-- <div class="col">
+
+            </div> -->
+            <div class="col d-flex align-items-center ">
+
+                <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+                <datalist id="datalistOptions">
+                    <option value="Sonargaon Hotel">
+                    <option value="Intercontinental">
+                    <option value="Radisson Hotel">
+                    <option value="Police Plaza">
+                    <option value="Bashundhara City">
+                    <option value="Jamuna Future Park">
+                    <option value="Sheltech Khan Plaza">
+                    <option value="Ramna Park">
+                    <option value="Dhaka University">
+                </datalist>
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </div>
+            <h6 class="display-6">Posted Parking Spots</h6>
+            <div class="card" style="width: 18rem;">
+                <img src="https://live.staticflickr.com/7332/12494310994_41a4f65fc0_b.jpg" class="card-img-top"
+                    alt="Parking Picture">
+                <div class="card-body">
+                    <h5 class="card-title">Sonargaon Hotel</h5>
+                    <a href="parkingSpotM" class="btn btn-primary btn-success">View details</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="https://thumbs.dreamstime.com/b/empty-space-car-park-interior-afternoon-indoor-parking-lot-interior-parking-garage-car-vacant-parking-lot-131607641.jpg"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Intercontinental</h5>
+                    <a href="parkingSpotM" class="btn btn-primary btn-success">View details</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="https://media.istockphoto.com/photos/single-car-on-a-parking-lot-picture-id182821556?k=20&m=182821556&s=612x612&w=0&h=3Sdur_ezXXSpj_Zxpxk61ozV0AJ8RWEgSakprXZBFgE="
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Radisson Hotel</h5>
+                    <a href="parkingSpotM" class="btn btn-primary btn-success">View details</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="https://img.freepik.com/premium-photo/empty-underground-parking-lot-garage-interior-with-concrete-stripe-painted-columns_213438-3772.jpg?w=2000"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Police Plaza</h5>
+                    <a href="parkingSpotM" class="btn btn-primary btn-success">View details</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="https://img.freepik.com/premium-photo/parking-garage-department-store-interior-empty-parking-lot-garage-interior-business-building-office_34362-2839.jpg?w=2000"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Bashundhara City</h5>
+                    <a href="parkingSpotM" class="btn btn-primary btn-success">View details</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="https://northstar.church/wp-content/uploads/2020/11/open-parking-space.jpg"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Jamuna Future Park</h5>
+                    <a href="parkingSpotM" class="btn btn-primary btn-success">View details</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="https://thumbs.dreamstime.com/b/free-parking-spaces-empty-lot-paid-156180350.jpg"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Sheltech Khan Plaza</h5>
+                    <a href="parkingSpotM" class="btn btn-primary btn-success">View details</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="https://media.istockphoto.com/photos/parking-lot-in-hong-kong-picture-id1281894399?k=20&m=1281894399&s=612x612&w=0&h=-WXuTQmTvGrTIH0FUajY1-ScNkeeiOUTHTapLFtdwAE="
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Ramna Park</h5>
+                    <a href="parkingSpotM" class="btn btn-primary btn-success">View details</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="https://static.abcotvs.com/kgo/images/cms/013120-kgo-parking-spot-img_Image_00-00-59,06.jpg"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Dhaka University</h5>
+                    <a href="parkingSpotM" class="btn btn-primary btn-success">View details</a>
+                </div>
+            </div>
+            <!-- <div class="col">
+
+            </div> -->
+        </div>
+    </div>
+
+    <h1 class="display-3 text-center">Currently Rented</h1>
+    <main class="container text-center h-100">
+
+        <div class="row">
+            <!-- <div class="col">
+
+            </div> -->
+            <div class="col d-flex align-items-center ">
+                <table class="table table-success table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Parking Spot Name</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><button type="button" class="btn btn-success">View Details</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Sonargaon Hotel</td>
+                            <td>07 Kazi Nazrul Islam Ave, Dhaka 1215</td>
+                            <td>16 April</td>
+                            <td>3pm-4pm</td>
+                            <td><a href="parkingSpotM" class="btn btn-primary btn-success">View Details</a></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="col">
+
+            </div> -->
+        </div>
+    </main>
+    <%- include('../partials/close') %>

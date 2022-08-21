@@ -1,0 +1,11 @@
+{
+    "name": "Sonargaon Hotel",
+    "address": "07 Kazi Nazrul Islam Ave, Dhaka 1215",
+    "location": "Dhaka",
+    "price": "50",
+    "img": "https://live.staticflickr.com/7332/12494310994_41a4f65fc0_b.jpg",
+    "created_by": "Abdul",
+    "rented": "Kareem",
+    "rented_date": "1/1/2000",
+    "payment_method": "Bkash"
+}

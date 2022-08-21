@@ -1,0 +1,84 @@
+<%- include('../partials/metadata') %>
+
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Peter Parks</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <h1></h1>
+    </div>
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://live.staticflickr.com/7332/12494310994_41a4f65fc0_b.jpg"
+                    class="rounded mx-auto d-block w-100" alt="Parking Spot" style="max-width: 50%;">
+            </div>
+        </div>
+    </div>
+    <div>
+        <h1></h1>
+    </div>
+    <main class="container text-center h-100">
+
+        <div class="row">
+            <!-- <div class="col">
+
+            </div> -->
+            <div class="col d-flex align-items-center ">
+                <table class="table table-success table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Client Name</th>
+                            <th scope="col">Merchant Name</th>
+                            <th scope="col">Parking Spot Name</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Payment Method</th>
+                            <th scope="col">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ami</td>
+                            <td>Amina</td>
+                            <td>Sonargaon Hotel</td>
+                            <td>07 Kazi Nazrul Islam Ave, Dhaka 1215</td>
+                            <td>Dhaka</td>
+                            <td>16 April</td>
+                            <td>3pm-4pm</td>
+                            <td>50</td>
+                            <td>Bkash</td>
+                            <td><button type="button" class="btn btn-success">End Booking</button></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="col">
+
+            </div> -->
+        </div>
+    </main>
+    <%- include('../partials/close') %>
