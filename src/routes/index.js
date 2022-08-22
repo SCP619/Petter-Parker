@@ -74,7 +74,8 @@ export default (router) => {
     res.render("pages/adminLogin", {});
   });
   router.get("/admin-manage", async (req, res, next) => {
-    res.render("pages/adminManage", {});
+    const spacesCreated = await Space.find({ created_by: { $in: [null, ""] } });
+    res.render("pages/adminManage", { spacesCreated });
   });
 
   ///////////////////////////////

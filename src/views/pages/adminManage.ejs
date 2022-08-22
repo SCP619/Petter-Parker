@@ -16,6 +16,7 @@
                     <table class="table table-success table-striped">
                         <thead>
                             <tr>
+                                <th scope="col">Parking Spot ID</th>
                                 <th scope="col">Merchant Name</th>
                                 <th scope="col">Parking Spot Name</th>
                                 <th scope="col">Address</th>
@@ -26,20 +27,37 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Amina</td>
-                                <td>Sonargaon Hotel</td>
-                                <td>07 Kazi Nazrul Islam Ave, Dhaka 1215</td>
-                                <td>Dhaka</td>
-                                <td>16 April</td>
-                                <td>50</td>
-                                <td>
-                                    <button type="submit" class="btn btn-primary btn-success">Approve</button>
-                                    <button type="submit" class="btn btn-hover btn-hover btn-danger ">Decline</button>
-                                </td>
+                            <% spacesCreated.forEach(({id, name, address, location, price, created_by })=> { %>
+                                <tr id="<%= id %>">
+                                    <th scope="row">
+                                        <%= id %>
+                                    </th>
+                                    <td>
+                                        <%= created_by %>
+                                    </td>
+                                    <td>
+                                        <%= name %>
+                                    </td>
+                                    <td>
+                                        <%= address %>
+                                    </td>
+                                    <td>
+                                        <%= location %>
+                                    </td>
+                                    <td>
+                                        <%= dateformat(rented_date, "ddd, d mmm" ) %>
+                                    </td>
+                                    <td>
+                                        <%= price %>
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-primary btn-success">Approve</button>
+                                        <button type="submit"
+                                            class="btn btn-hover btn-hover btn-danger ">Decline</button>
+                                    </td>
 
-                            </tr>
-
+                                </tr>
+                                <% }) %>
                         </tbody>
                     </table>
                 </div>
