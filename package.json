@@ -7,19 +7,21 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "start": "nodemon ./src/main.js",
+    "start": "concurrently \"nodemon ./src/main.js\", \"npm run css\"",
+    "css": "postcss -w ./src/style/main.css -o ./dist/style.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "dateformat": "^5.0.3",
     "ejs": "^3.1.8",
     "express": "^4.17.1",
-    "express-form-data": "^2.0.18",
-    "mongoose": "^6.5.2",
-    "multer": "^1.4.5-lts.1"
+    "express-session": "^1.17.3",
+    "mongoose": "^6.5.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
+    "concurrently": "^7.3.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.19",
     "postcss": "^8.1.2",

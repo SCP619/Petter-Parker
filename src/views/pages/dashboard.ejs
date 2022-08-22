@@ -1,109 +1,91 @@
 <%- include('../partials/metadata') %>
+  <%- include('../partials/navbar') %>
 
-  <header class="max-vw-100 fixed-top">
-    <nav class="navbar navbar-expand-lg bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Peter Parks</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse align-items-right" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="profile">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login">Logout</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-  <h1 class="display-3 text-center">Where Do You Want to Park?</h1>
-  <div class="container text-center h-100">
-    <div class="row aling-ites">
-      <!-- <div class="col">
+    <h1 class="display-3 text-center">Where Do You Want to Park?</h1>
+    <div class="container text-center h-100">
+      <div class="row aling-ites">
+        <!-- <div class="col">
 
             </div> -->
-      <div class="col d-flex align-items-center">
-        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." />
-        <datalist id="datalistOptions">
-          <option value="Dhaka"></option>
-          <option value="Chittagong"></option>
-          <option value="Sylhet"></option>
-        </datalist>
+        <div class="col d-flex align-items-center">
+          <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." />
+          <datalist id="datalistOptions">
+            <option value="Dhaka"></option>
+            <option value="Chittagong"></option>
+            <option value="Sylhet"></option>
+          </datalist>
 
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </div>
-      <h6 class="display-6">Spots nearby?</h6>
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </div>
+        <h6 class="display-6">Spots nearby?</h6>
 
-      <% spaces.forEach(({id, name, img })=> { %>
-        <div id="<%= id %>" class="card" style="width: 18rem">
-          <img src="<%= img %>" class="card-img-top" alt="Parking Picture" />
-          <div class="card-body">
-            <h5 class="card-title">
-              <%= name %>
-            </h5>
-            <a href="bookspot/<%= id %>" class="btn btn-primary btn-success">Book Now</a>
+        <% spacesAvail.forEach(({id, name, img })=> { %>
+          <div id="<%= id %>" class="card" style="width: 18rem">
+            <img src="<%= img %>" class="card-img-top" alt="Parking Picture" />
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= name %>
+              </h5>
+              <a href="bookspot/<%= id %>" class="btn btn-primary btn-success">Book Now</a>
+            </div>
           </div>
-        </div>
-        <% }) %>
+          <% }) %>
 
-          <!-- <div class="col">
-
-            </div> -->
-    </div>
-  </div>
-
-  <h1 class="display-3 text-center">Parking history</h1>
-  <main class="container text-center h-100">
-    <div class="row">
-      <!-- <div class="col">
+            <!-- <div class="col">
 
             </div> -->
-      <div class="col d-flex align-items-center">
-        <table class="table table-success table-striped">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Parking Spot Name</th>
-              <th scope="col">Location</th>
-              <th scope="col">Date</th>
-              <th scope="col">Time</th>
-              <th scope="col">Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <button type="button" class="btn btn-success">
-                  View Details
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Sonargaon Hotel</td>
-              <td>07 Kazi Nazrul Islam Ave, Dhaka 1215</td>
-              <td>16 April</td>
-              <td>3pm-4pm</td>
-              <td>
-                <a href="parkingSpot" class="btn btn-primary btn-success">View Details</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
-      <!-- <div class="col">
+    </div>
+
+    <h1 class="display-3 text-center">Parking history</h1>
+    <main class="container text-center h-100">
+      <div class="row">
+        <!-- <div class="col">
 
             </div> -->
-    </div>
-  </main>
-  <%- include('../partials/close') %>
+        <div class="col d-flex align-items-center">
+          <table class="table table-success table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Parking Spot Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Location</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% spacesBooked.forEach(({id, name, address, location, price, rented_date, rented_time })=> { %>
+                <tr id="<%= id %>">
+                  <th scope="row">2</th>
+                  <td>
+                    <%= name %>
+                  </td>
+                  <td>
+                    <%= address %>
+                  </td>
+                  <td>
+                    <%= location %>
+                  </td>
+                  <td>
+                    <%= dateformat(rented_date, "ddd, d mmm" ) %>
+                  </td>
+                  <td>
+                    <%= rented_time %>
+                  </td>
+                  <td>
+                    <a href="parkingSpot" class="btn btn-primary btn-success">View Details</a>
+                  </td>
+                </tr>
+                <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <!-- <div class="col">
+
+            </div> -->
+      </div>
+    </main>
+    <%- include('../partials/close') %>

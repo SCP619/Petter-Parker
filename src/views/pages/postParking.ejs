@@ -1,75 +1,50 @@
 <%- include('../partials/metadata') %>
+    <%- include('../partials/navbar-merchant') %>
+        <main class="container text-center h-100">
+            <div class="row">
+                <div class="col">
 
-    <header class="max-vw-100 fixed-top">
-        <nav class="navbar navbar-expand-lg bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Peter Parks</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="merchantDash">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="merchantProfile">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login">Logout</a>
-                        </li>
-                    </ul>
+                </div>
+                <div class="col d-flex align-items-center vh-100">
+                    <form action="/postparking" method="post" class="card">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="yourName" class="form-label"> Parking Spot Name</label>
+                                <input type="name" class="form-control" id="inputName">
+                            </div>
+                            <div class="mb-3">
+                                <label for="yourEmail1" class="form-label">Address</label>
+                                <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
+
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Choose Your Location</option>
+                                    <option value="Dhaka">Dhaka</option>
+                                    <option value="Sylhet">Sylhet</option>
+                                    <option value="Chittagong">Chittagong</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+
+                                <label for="formFile" class="form-label">Parking Spot Image</label>
+                                <input class="form-control form-control-sm" type="text"
+                                    placeholder="Give a Link to the image" aria-label=".form-control-sm example">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="InputPassword" class="form-label"> Set Price</label>
+                                <input type="password" class="form-control" id="InputPassword">
+                            </div>
+
+                            <button type='submit' class="btn btn-primary btn-success">Post Parking Spot</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col">
+
                 </div>
             </div>
-        </nav>
-    </header>
-    <main class="container text-center h-100">
-        <div class="row">
-            <div class="col">
-
-            </div>
-            <div class="col d-flex align-items-center vh-100">
-                <form class="card">
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label for="yourName" class="form-label"> Parking Spot Name</label>
-                            <input type="name" class="form-control" id="inputName">
-                        </div>
-                        <div class="mb-3">
-                            <label for="yourEmail1" class="form-label">Address</label>
-                            <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
-
-                        </div>
-                        <div class="mb-3">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Choose Your Location</option>
-                                <option value="1">Dhaka</option>
-                                <option value="2">Sylhet</option>
-                                <option value="3">Chittagong</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label">Parking Spot Image</label>
-                            <input class="form-control form-control-sm" type="text"
-                                placeholder="Give a Link to the image" aria-label=".form-control-sm example">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="InputPassword" class="form-label"> Set Price</label>
-                            <input type="password" class="form-control" id="InputPassword">
-                        </div>
-
-                        <a href="merchantDash" type="submit" class="btn btn-primary btn-success">Post Parking
-                            Spot</a>
-                    </div>
-                </form>
-            </div>
-            <div class="col">
-
-            </div>
-        </div>
-    </main>
-    <%- include('../partials/close') %>
+        </main>
+        <%- include('../partials/close') %>

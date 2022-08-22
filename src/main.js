@@ -1,5 +1,7 @@
 import './db/mongoose.js'
 import express, { json, urlencoded } from 'express'
+import cookieParser from 'cookie-parser';
+import sessions from 'express-session';
 import logger from 'morgan'
 import routes from './routes/index.js'
 import { fileURLToPath } from 'url'
@@ -21,6 +23,15 @@ app.use(express.static(join(__dirname, '../dist')))
 app.use(express.static(join(__dirname, '../assets')))
 app.set('views', join(__dirname, '/views'))
 app.set('view engine', 'ejs')
+
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(sessions({
+    secret: "scp_emergency",
+    saveUninitialized:true,
+    cookie: { maxAge: oneDay },
+    resave: false 
+}));
+app.use(cookieParser());
 
 routes(app)
 

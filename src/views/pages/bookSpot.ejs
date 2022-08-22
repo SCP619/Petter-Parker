@@ -1,6 +1,7 @@
 <%- include('../partials/metadata') %>
     <%- include('../partials/navbar') %>
-        <% const {id, name, address, location, price, img, created_by, rented, rented_date, payment_method}=space %>
+        <% const {id, name, address, location, price, img, created_by, rented_by, rented_date, rented_time,
+            payment_method}=space %>
 
             <div>
                 <h1></h1>
@@ -37,25 +38,27 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Amina</td>
                                     <td>
-                                        <% name %>
+                                        <%= created_by %>
                                     </td>
                                     <td>
-                                        <% address %>
+                                        <%= name %>
                                     </td>
                                     <td>
-                                        <% location %>
+                                        <%= address %>
                                     </td>
                                     <td>
-                                        <% rented_date %>
+                                        <%= location %>
+                                    </td>
+                                    <td>
+                                        <%= dateformat(rented_date, "ddd, d mmm" ) %>
                                     </td>
                                     <td>
                                         <div class="mb-3">
                                             <input type="hidden" name="id" value="<%= id %>" />
-                                            <input type="hidden" name="user" value="..." />
-                                            <select class="form-select" name="time" aria-label="Default select example">
-                                                <option selected>Choose Time Range</option>
+                                            <select class="form-select" name="time" aria-label="Default select example"
+                                                required>
+                                                <option selected diabled>Choose Time Range</option>
                                                 <option value="3pm-4pm">3pm-4pm</option>
                                                 <option value="4pm-5pm">4pm-5pm</option>
                                                 <option value="5pm-6pm">5pm-6pm</option>
@@ -63,7 +66,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <% price %>
+                                        <%= price %>
                                     </td>
                                     <td>
                                         <button type='submit' class="btn btn-primary btn-success">Confirm
