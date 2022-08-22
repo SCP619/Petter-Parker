@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const spaceSchema = new mongoose.Schema({
   name: {
@@ -6,10 +6,10 @@ const spaceSchema = new mongoose.Schema({
     required: true,
   },
   address: {
-    type: String
+    type: String,
   },
   location: {
-    type: String
+    type: String,
   },
   price: {
     type: Number,
@@ -31,8 +31,12 @@ const spaceSchema = new mongoose.Schema({
   },
   payment_method: {
     type: String,
-  }
-})
+  },
+  status: {
+    type: String,
+    default: "Pending",
+  },
+});
 
 // "name": "Sonargaon Hotel",
 // "address": "07 Kazi Nazrul Islam Ave, Dhaka 1215",
@@ -44,6 +48,6 @@ const spaceSchema = new mongoose.Schema({
 // "rented_date": "1/1/2000",
 // "payment_method": "Bkash"
 
-const space = mongoose.model('space', spaceSchema)
+const space = mongoose.model("space", spaceSchema);
 
-export default space
+export default space;
