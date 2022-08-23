@@ -7,6 +7,10 @@ export default (router) => {
   //   res.render('login')
   // })
 
+  // req.session.destroy((err) => {
+  //   res.redirect('/') // will always fire after session is destroyed
+  // })
+
   ///////////////////////////////
   //GENERAL Reg, LOGIN, PROFILE//
   ///////////////////////////////
@@ -19,8 +23,23 @@ export default (router) => {
     if (req.session.userid) return res.redirect("/");
 
     const { name, email_address, password, location, type } = req.body;
-    User({ name, email_address, password, location, type }).save();
-
+    if (req.body.type) {
+      User({
+        name,
+        email_address,
+        password,
+        location,
+        type: "Merchant",
+      }).save();
+    } else {
+      User({
+        name,
+        email_address,
+        password,
+        location,
+        type: "Customer",
+      }).save();
+    }
     res.redirect("/login");
   });
   router.get("/login", async (req, res, next) => {

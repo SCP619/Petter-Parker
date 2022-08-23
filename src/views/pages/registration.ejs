@@ -24,36 +24,33 @@
 
             </div>
             <div class="col d-flex align-items-center vh-100">
-                <form class="card">
+                <form action="/register" method="post" class="card">
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="yourName" class="form-label"> Name</label>
-                            <input type="name" class="form-control" id="inputName">
+                            <input type="name" name="name" class="form-control" id="inputName">
                         </div>
                         <div class="mb-3">
                             <label for="yourEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
+                            <input type="email" name="email_address" class="form-control" id="InputEmail1"
+                                aria-describedby="emailHelp">
 
                         </div>
                         <div class="mb-3">
                             <label for="InputPassword" class="form-label"> Set Password</label>
-                            <input type="password" class="form-control" id="InputPassword">
+                            <input type="password" name="password" class="form-control" id="InputPassword">
                         </div>
                         <div class="mb-3">
-                            <select class="form-select" aria-label="Default select example">
+                            <select class="form-select" name="location" aria-label="Default select example">
                                 <option selected>Choose Your Location</option>
-                                <option value="1">Dhaka</option>
-                                <option value="2">Sylhet</option>
-                                <option value="3">Chittagong</option>
+                                <option value="Dhaka">Dhaka</option>
+                                <option value="Sylhet">Sylhet</option>
+                                <option value="Chittagong">Chittagong</option>
                             </select>
                         </div>
                         <div class="mb-3 form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input" id="client">
-                            <label class="form-check-label" for="check1">Client</label>
-                        </div>
-                        <div class="mb-3 form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input" id="merchat">
-                            <label class="form-check-label" for="check2">Merchat</label>
+                            <input type="checkbox" name="type" class="form-check-input" id="merchat">
+                            <label class="form-check-label" for="check2">I am a Merchant?</label>
                         </div>
                         <div id="emailHelp" class="form-text">We'll never share your Information with anyone else.
                         </div>
