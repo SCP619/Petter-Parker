@@ -1,6 +1,7 @@
 <%- include('../partials/metadata') %>
     <%- include('../partials/navbar-merchant') %>
-        <% const {id, img}=space %>
+        <% const {id, name, address, location, price, rented_date, rented_time,payment_method, rented_by,created_by,
+            img}=space %>
             <div>
                 <h1></h1>
             </div>
@@ -39,42 +40,39 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <% spacesBooked.forEach(({id, name, address, location, price, rented_date,
-                                    rented_time,payment_method, rented_by,created_by })=> { %>
-                                    <tr id="<%= id %>">
-                                        <th scope="row">
-                                            <%= id %>
-                                        </th>
+                                <tr id="<%= id %>">
+                                    <th scope="row">
+                                        <%= id %>
+                                    </th>
 
-                                        <td>
-                                            <%= rented_by %>
-                                        </td>
-                                        <td>
-                                            <%= created_by %>
-                                        </td>
-                                        <td>
-                                            <%= name %>
-                                        </td>
-                                        <td>
-                                            <%= address %>
-                                        </td>
-                                        <td>
-                                            <%= location %>
-                                        </td>
-                                        <td>
-                                            <%= dateformat(rented_date, "ddd, d mmm" ) %>
-                                        </td>
-                                        <td>
-                                            <%= rented_time %>
-                                        </td>
-                                        <td>
-                                            <%= price %>
-                                        </td>
-                                        <td>
-                                            <%= payment_method %>
-                                        </td>
-                                    </tr>
-                                    <% }) %>
+                                    <td>
+                                        <%= rented_by %>
+                                    </td>
+                                    <td>
+                                        <%= created_by %>
+                                    </td>
+                                    <td>
+                                        <%= name %>
+                                    </td>
+                                    <td>
+                                        <%= address %>
+                                    </td>
+                                    <td>
+                                        <%= location %>
+                                    </td>
+                                    <td>
+                                        <%= dateformat(rented_date, "ddd, d mmm" ) %>
+                                    </td>
+                                    <td>
+                                        <%= rented_time %>
+                                    </td>
+                                    <td>
+                                        <%= price %>
+                                    </td>
+                                    <td>
+                                        <%= payment_method %>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

@@ -70,6 +70,15 @@ export default (router) => {
     }
   });
 
+  router.get("/logout", async (req, res, next) => {
+    if (!req.session.userid) return res.redirect("/login");
+
+    req.session.destroy();
+    return res.redirect("/login");
+  });
+
+  ///////Profiles///////
+
   router.get("/profile", async (req, res, next) => {
     if (!req.session.userid) return res.redirect("/login");
     const { name, email_address, location, type } = req.session;
@@ -161,12 +170,10 @@ export default (router) => {
   });
   router.get("/parkingSpotM/:id", async (req, res, next) => {
     if (!req.session.userid) return res.redirect("/login");
-    const spacesBooked = await Space.find({
-      payment_method: { $nin: [null, ""] },
-    });
+
     const space = await Space.findById(req.params.id);
 
-    res.render("pages/parkingSpotM", { space, spacesBooked, dateformat });
+    res.render("pages/parkingSpotM", { space, dateformat });
   });
 
   ///////////////////////////////
