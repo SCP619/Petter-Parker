@@ -180,14 +180,12 @@ export default (router) => {
   //////CUSTOMER STUFF///////////
   ///////////////////////////////
 
-  router.get("/parkingspot", async (req, res, next) => {
+  router.get("/parkingspot/:id", async (req, res, next) => {
     if (!req.session.userid) return res.redirect("/login");
-    const spacesBooked = await Space.find({
-      payment_method: { $nin: [null, ""] },
-    });
-
-    res.render("pages/parkingSpot", { spacesBooked, dateformat });
+    const space = await Space.findById(req.params.id);
+    res.render("pages/parkingSpot", { space, dateformat });
   });
+
   router.post("/parkingspot", async (req, res, next) => {
     if (!req.session.userid) return res.redirect("/login");
 
