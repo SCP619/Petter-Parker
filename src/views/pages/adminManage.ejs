@@ -27,7 +27,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% spacesCreated.forEach(({id, name, address, location, price, created_by })=> { %>
+                            <% spacesCreated.forEach(({id, name, address, location, price, rented_date, created_by })=>
+                                { %>
                                 <tr id="<%= id %>">
                                     <th scope="row">
                                         <%= id %>

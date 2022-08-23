@@ -21,6 +21,14 @@ export default (router) => {
 
     res.render("pages/registration", {});
   });
+  router.post("/register", async (req, res, next) => {
+    if (req.session.userid) return res.redirect("/");
+
+    const { name, email_address, password, location, type } = req.body;
+    User({ name, email_address, password, location, type }).save();
+
+    res.redirect("/login");
+  });
   router.get("/login", async (req, res, next) => {
     if (req.session.userid) return res.redirect("/");
 
@@ -41,6 +49,7 @@ export default (router) => {
         req.session.type = user.type;
 
         if (user.type === "Merchant") res.redirect("/merchant-dashboard");
+        else if (user.type === "Admin") res.redirect("/admin-manage");
         else res.redirect("/");
       }
     } else {
@@ -74,8 +83,15 @@ export default (router) => {
     res.render("pages/adminLogin", {});
   });
   router.get("/admin-manage", async (req, res, next) => {
-    const spacesCreated = await Space.find({ created_by: { $in: [null, ""] } });
-    res.render("pages/adminManage", { spacesCreated });
+    const spacesCreated = await Space.find({
+      created_by: { $nin: [null, ""] },
+      status: { $eq: "Pending" },
+    });
+    // console.log(
+    //   "🚀 ~ file: index.js ~ line 86 ~ router.get ~ spacesCreated",
+    //   spacesCreated
+    // );
+    res.render("pages/adminManage", { spacesCreated, dateformat });
   });
 
   ///////////////////////////////
@@ -87,21 +103,28 @@ export default (router) => {
   });
   router.post("/postparking", async (req, res, next) => {
     if (!req.session.userid) return res.redirect("/login");
-    const { id, name, address, location, img, price } = req.body;
+    const { name, address, location, img, price } = req.body;
 
-    await Space.findByIdAndUpdate(id, {
-      created_by: name,
-      img: img,
-      address: address,
-      location: location,
-      rented_time: time,
-      price: price,
-      rented_date: new Date(),
-    });
+    Space({
+      name,
+      created_by: req.session.name,
+      img,
+      address,
+      price,
+      location,
+    }).save();
 
     res.redirect("/merchant-dashboard");
   });
   router.get("/parkingSpotM", async (req, res, next) => {
+    if (!req.session.userid) return res.redirect("/login");
+    const spacesBooked = await Space.find({
+      payment_method: { $nin: [null, ""] },
+    });
+
+    res.render("pages/parkingSpotM", { spacesBooked, dateformat });
+  });
+  router.get("/parkingSpotM/:id", async (req, res, next) => {
     if (!req.session.userid) return res.redirect("/login");
     const spacesBooked = await Space.find({
       payment_method: { $nin: [null, ""] },
@@ -168,7 +191,10 @@ export default (router) => {
 
   router.get("/merchant-dashboard", async (req, res, next) => {
     if (!req.session.userid) return res.redirect("/login");
-    const spacesCreated = await Space.find({ created_by: { $in: [null, ""] } });
+    const spacesCreated = await Space.find({
+      created_by: req.session.name,
+      status: "Approved",
+    });
     const spacesBooked = await Space.find({
       payment_method: { $nin: [null, ""] },
     });
