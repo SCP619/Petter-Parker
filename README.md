@@ -1,1 +1,5 @@
-# 391_project
+# Parking Spot finder and Booking site
+
+npm i
+npm start
+
