@@ -92,30 +92,30 @@ export default (router) => {
   ///////////////////////////////
   /////////ADMIN STUFF///////////
   ///////////////////////////////
-  router.get("/admin-login", async (req, res, next) => {
-    res.render("pages/adminLogin", {});
-  });
-  router.post("/admin-login", async (req, res, next) => {
-    if (req.session.userid) return res.redirect("/");
+  // router.get("/admin-login", async (req, res, next) => {
+  //   res.render("pages/adminLogin", {});
+  // });
+  // router.post("/admin-login", async (req, res, next) => {
+  //   if (req.session.userid) return res.redirect("/");
 
-    const { email, password } = req.body;
-    const user = await User.findOne({ email_address: email });
+  //   const { email, password } = req.body;
+  //   const user = await User.findOne({ email_address: email });
 
-    if (user) {
-      if (user.password === password) {
-        req.session.userid = user.id;
-        req.session.name = user.name;
-        req.session.email_address = user.email_address;
-        req.session.location = user.location;
-        req.session.type = user.type;
+  //   if (user) {
+  //     if (user.password === password) {
+  //       req.session.userid = user.id;
+  //       req.session.name = user.name;
+  //       req.session.email_address = user.email_address;
+  //       req.session.location = user.location;
+  //       req.session.type = user.type;
 
-        if (user.type === "Admin") res.redirect("/admin-manage");
-        else res.redirect("/");
-      }
-    } else {
-      res.render("pages/admin-login", { error: "Wrong Email or Password" });
-    }
-  });
+  //       if (user.type === "Admin") res.redirect("/admin-manage");
+  //       else res.redirect("/");
+  //     }
+  //   } else {
+  //     res.render("/admin-login", { error: "Wrong Email or Password" });
+  //   }
+  // });
   router.get("/admin-manage", async (req, res, next) => {
     if (!req.session.userid) return res.redirect("/admin-login");
     const spacesCreated = await Space.find({
@@ -156,16 +156,17 @@ export default (router) => {
     const spacesBooked = await Space.find({
       payment_method: { $nin: [null, ""] },
     });
-
-    res.render("pages/parkingSpotM", { spacesBooked, dateformat });
+    const space = await Space.findById(req.params.id);
+    res.render("pages/parkingSpotM", { space, spacesBooked, dateformat });
   });
   router.get("/parkingSpotM/:id", async (req, res, next) => {
     if (!req.session.userid) return res.redirect("/login");
     const spacesBooked = await Space.find({
       payment_method: { $nin: [null, ""] },
     });
+    const space = await Space.findById(req.params.id);
 
-    res.render("pages/parkingSpotM", { spacesBooked, dateformat });
+    res.render("pages/parkingSpotM", { space, spacesBooked, dateformat });
   });
 
   ///////////////////////////////
