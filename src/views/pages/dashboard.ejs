@@ -7,8 +7,9 @@
         <!-- <div class="col">
 
             </div> -->
-        <div class="col d-flex align-items-center">
-          <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." />
+        <form action="/dashboard" method="get" class="col d-flex align-items-center">
+          <input class="form-control" name="search" list="datalistOptions" id="exampleDataList"
+            placeholder="Type to search..." />
           <datalist id="datalistOptions">
             <option value="Dhaka"></option>
             <option value="Chittagong"></option>
@@ -16,7 +17,7 @@
           </datalist>
 
           <button class="btn btn-outline-success" type="submit">Search</button>
-        </div>
+        </form>
         <h6 class="display-6">Spots nearby?</h6>
 
         <% spacesAvail.forEach(({id, name, img })=> { %>
@@ -47,7 +48,7 @@
           <table class="table table-success table-striped">
             <thead>
               <tr>
-                <th scope="col">#</th>
+
                 <th scope="col">Parking Spot Name</th>
                 <th scope="col">Address</th>
                 <th scope="col">Location</th>
@@ -59,7 +60,7 @@
             <tbody>
               <% spacesBooked.forEach(({id, name, address, location, price, rented_date, rented_time })=> { %>
                 <tr id="<%= id %>">
-                  <th scope="row">2</th>
+
                   <td>
                     <%= name %>
                   </td>

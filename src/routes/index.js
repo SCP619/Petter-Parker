@@ -101,10 +101,10 @@ export default (router) => {
   ///////////////////////////////
   /////////ADMIN STUFF///////////
   ///////////////////////////////
-  // router.get("/admin-login", async (req, res, next) => {
+  // router.get("/login", async (req, res, next) => {
   //   res.render("pages/adminLogin", {});
   // });
-  // router.post("/admin-login", async (req, res, next) => {
+  // router.post("/login", async (req, res, next) => {
   //   if (req.session.userid) return res.redirect("/");
 
   //   const { email, password } = req.body;
@@ -122,11 +122,11 @@ export default (router) => {
   //       else res.redirect("/");
   //     }
   //   } else {
-  //     res.render("/admin-login", { error: "Wrong Email or Password" });
+  //     res.render("/login", { error: "Wrong Email or Password" });
   //   }
   // });
   router.get("/admin-manage", async (req, res, next) => {
-    if (!req.session.userid) return res.redirect("/admin-login");
+    if (!req.session.userid) return res.redirect("/login");
     const spacesCreated = await Space.find({
       created_by: { $nin: [null, ""] },
       status: { $eq: "Pending" },
@@ -232,7 +232,6 @@ export default (router) => {
   router.post("/pay", async (req, res, next) => {
     if (!req.session.userid) return res.redirect("/login");
     const { id, payment_method } = req.body;
-    // console.log("🚀 ~ file: index.js ~ line 42 ~ router.post ~ id, payment_method", id, payment_method)
 
     await Space.findByIdAndUpdate(id, { payment_method });
 
@@ -260,10 +259,36 @@ export default (router) => {
     });
   });
 
+  router.post("/change-status", async (req, res, next) => {
+    const { id, status } = req.body;
+
+    if (status === "Approved") {
+      await Space.findByIdAndUpdate(id, { status: status });
+    } else {
+      await Space.findByIdAndDelete(id);
+    }
+
+    return res.redirect("/admin-manage");
+  });
+
   router.get("/dashboard", async (req, res, next) => {
     if (!req.session.userid) return res.redirect("/login");
+    const { search, location } = req.query;
 
-    const spacesAvail = await Space.find({ rented_by: { $in: [null, ""] } });
+    let params = {
+      name: { $regex: new RegExp(search, "i") },
+      location: { $regex: new RegExp(search, "i") },
+    };
+    Object.keys(params).forEach((key) => {
+      if (params[key] === undefined) {
+        delete params[key];
+      }
+    });
+    console.log(params);
+    const spacesAvail = await Space.find({
+      rented_by: { $in: [null, ""] },
+      ...params,
+    });
     const spacesBooked = await Space.find({
       payment_method: { $nin: [null, ""] },
       rented_by: req.session.name,

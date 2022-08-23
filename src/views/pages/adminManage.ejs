@@ -52,9 +52,17 @@
                                         <%= price %>
                                     </td>
                                     <td>
-                                        <button type="submit" class="btn btn-primary btn-success">Approve</button>
-                                        <button type="submit"
-                                            class="btn btn-hover btn-hover btn-danger ">Decline</button>
+                                        <form action="change-status" method="post">
+                                            <input type="hidden" name="id" value="<%= id %>" />
+                                            <input type="hidden" name="status" value="Approved" />
+                                            <button type="submit" class="btn btn-primary btn-success">Approve</button>
+                                        </form>
+                                        <form action="change-status" method="post">
+                                            <input type="hidden" name="id" value="<%= id %>" />
+                                            <input type="hidden" name="status" value="Decline" />
+                                            <button type="submit"
+                                                class="btn btn-hover btn-hover btn-danger ">Decline</button>
+                                        </form>
                                     </td>
 
                                 </tr>
