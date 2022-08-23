@@ -20,7 +20,7 @@
                 <!-- <div class="col">
 
             </div> -->
-                <div class="col d-flex align-items-center ">
+                <form action="parkingspot" method="post" class="col d-flex align-items-center ">
                     <table class="table table-success table-striped">
                         <thead>
                             <tr>
@@ -40,6 +40,7 @@
                         <tbody>
                             <% spacesBooked.forEach(({id, name, address, location, price, rented_date,
                                 rented_time,payment_method, rented_by,created_by })=> { %>
+                                <input type="hidden" name="id" value="<%= id %>">
                                 <tr id="<%= id %>">
                                     <th scope="row">
                                         <%= id %>
@@ -72,13 +73,13 @@
                                     <td>
                                         <%= payment_method %>
                                     </td>
-                                    <td><button type="button" class="btn btn-success">End Booking</button></td>
+                                    <td><button type="submit" class="btn btn-success">End Booking</button></td>
                                 </tr>
                                 <% }) %>
                         </tbody>
                     </table>
-                </div>
-                <!-- <div class="col">
+            </div>
+            <!-- <div class="col">
 
             </div> -->
             </div>

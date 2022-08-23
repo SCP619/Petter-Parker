@@ -95,7 +95,29 @@ export default (router) => {
   router.get("/admin-login", async (req, res, next) => {
     res.render("pages/adminLogin", {});
   });
+  router.post("/admin-login", async (req, res, next) => {
+    if (req.session.userid) return res.redirect("/");
+
+    const { email, password } = req.body;
+    const user = await User.findOne({ email_address: email });
+
+    if (user) {
+      if (user.password === password) {
+        req.session.userid = user.id;
+        req.session.name = user.name;
+        req.session.email_address = user.email_address;
+        req.session.location = user.location;
+        req.session.type = user.type;
+
+        if (user.type === "Admin") res.redirect("/admin-manage");
+        else res.redirect("/");
+      }
+    } else {
+      res.render("pages/admin-login", { error: "Wrong Email or Password" });
+    }
+  });
   router.get("/admin-manage", async (req, res, next) => {
+    if (!req.session.userid) return res.redirect("/admin-login");
     const spacesCreated = await Space.find({
       created_by: { $nin: [null, ""] },
       status: { $eq: "Pending" },
@@ -158,6 +180,19 @@ export default (router) => {
 
     res.render("pages/parkingSpot", { spacesBooked, dateformat });
   });
+  router.post("/parkingspot", async (req, res, next) => {
+    if (!req.session.userid) return res.redirect("/login");
+
+    const { id } = req.body;
+    await Space.findByIdAndUpdate(id, {
+      rented_by: null,
+      rented_time: null,
+      rented_date: null,
+      payment_method: null,
+    });
+
+    res.redirect("/");
+  });
 
   router.get("/booking", async (req, res, next) => {
     if (!req.session.userid) return res.redirect("/login");
@@ -173,7 +208,7 @@ export default (router) => {
   router.post("/bookspot", async (req, res, next) => {
     if (!req.session.userid) return res.redirect("/login");
     const { id, time } = req.body;
-    console.log(req.session.userid);
+
     await Space.findByIdAndUpdate(id, {
       rented_by: req.session.name,
       rented_time: time,
