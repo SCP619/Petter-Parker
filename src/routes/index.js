@@ -310,6 +310,7 @@ export default (router) => {
     console.log(params);
     const spacesAvail = await Space.find({
       rented_by: { $in: [null, ""] },
+      status: "Approved",
       ...params,
     });
     const spacesBooked = await Space.find({
