@@ -244,12 +244,26 @@ export default (router) => {
 
   router.get("/merchant-dashboard", async (req, res, next) => {
     if (!req.session.userid) return res.redirect("/login");
+    const { search } = req.query;
+
+    let params = {
+      location: { $regex: new RegExp(search, "i") },
+    };
+    Object.keys(params).forEach((key) => {
+      if (params[key] === undefined) {
+        delete params[key];
+      }
+    });
+    console.log(params);
+
     const spacesCreated = await Space.find({
       created_by: req.session.name,
       status: "Approved",
+      ...params,
     });
     const spacesBooked = await Space.find({
       payment_method: { $nin: [null, ""] },
+      created_by: req.session.name,
     });
 
     res.render("pages/merchantDash", {
@@ -273,10 +287,9 @@ export default (router) => {
 
   router.get("/dashboard", async (req, res, next) => {
     if (!req.session.userid) return res.redirect("/login");
-    const { search, location } = req.query;
+    const { search } = req.query;
 
     let params = {
-      name: { $regex: new RegExp(search, "i") },
       location: { $regex: new RegExp(search, "i") },
     };
     Object.keys(params).forEach((key) => {

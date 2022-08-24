@@ -8,11 +8,10 @@
                 <!-- <div class="col">
 
             </div> -->
-                <div class="col d-flex align-items-center ">
-
-                    <input class="form-control" list="datalistOptions" id="exampleDataList"
-                        placeholder="Type to search...">
-                    <datalist id="datalistOptions">
+                <form action="/merchant-dashboard" method="get" class="col d-flex align-items-center">
+                    <input class="form-control" name="search" list="datalistOptions" id="exampleDataList"
+                        placeholder="Type to search..." />
+                    <!-- <datalist id="datalistOptions">
                         <option value="Sonargaon Hotel">
                         <option value="Intercontinental">
                         <option value="Radisson Hotel">
@@ -22,9 +21,13 @@
                         <option value="Sheltech Khan Plaza">
                         <option value="Ramna Park">
                         <option value="Dhaka University">
-                    </datalist>
+                    </datalist> -->
+
                     <button class="btn btn-outline-success" type="submit">Search</button>
-                </div>
+                </form>
+
+                <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+
                 <h6 class="display-6">Posted Parking Spots</h6>
                 <% spacesCreated.forEach(({id,name,img})=> { %>
                     <div id="<%= id %>" class="card" style="width: 18rem;">
