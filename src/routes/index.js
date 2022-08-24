@@ -186,15 +186,15 @@ export default (router) => {
     res.render("pages/parkingSpot", { space, dateformat });
   });
 
-  router.post("/parkingspot", async (req, res, next) => {
+  router.post("/parkingspot/end-booking", async (req, res, next) => {
     if (!req.session.userid) return res.redirect("/login");
 
     const { id } = req.body;
     await Space.findByIdAndUpdate(id, {
-      rented_by: null,
-      rented_time: null,
-      rented_date: null,
-      payment_method: null,
+      rented_by: "",
+      rented_time: "",
+      // rented_date: null,
+      payment_method: "",
     });
 
     res.redirect("/");
@@ -272,6 +272,16 @@ export default (router) => {
       dateformat,
     });
   });
+
+  // router.post("/change-booking", async (req, res, next) => {
+  //   const { id, end } = req.body;
+
+  //   if (end === "End") {
+  //     await Space.findByIdAndDelete(rented_by, rented_time, payment_method);
+  //   }
+
+  //   return res.redirect("/dashboard");
+  // });
 
   router.post("/change-status", async (req, res, next) => {
     const { id, status } = req.body;
